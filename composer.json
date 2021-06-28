@@ -1,0 +1,24 @@
+{
+  "name": "raphaelbarbooza/laravel-api-helpers",
+  "type": "library",
+  "description": "Helpers que auxiliam no tratamento de dados do Laravel para retornos verbosos respeitando APIRest",
+  "keywords": ["helpers","laravel","api","rest","restful"],
+  "homepage": "https://raphaelbarboza.com.br/package",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Raphael Barboza",
+      "email": "contato@raphaelbarboza.com.br",
+      "homepage": "https://www.raphaelbarboza.com.br",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.2 || ^8.0"
+  },
+  "autoload" : {
+    "psr-4" : {
+      "laravelApiHelpers\\": "src/"
+    }
+  }
+}
