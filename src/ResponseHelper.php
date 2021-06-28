@@ -90,7 +90,7 @@ class ResponseHelper
       ],200);
   }
 
-  public static function sucessoCriar($msg = "Objeto criado com sucesso.", $dados){
+  public static function sucessoCriar($dados, $msg = "Objeto criado com sucesso."){
         return response()->json([
             'status' => 'sucesso',
             'code' => 'sc02',
@@ -99,7 +99,7 @@ class ResponseHelper
         ],201);
     }
 
-  public static function sucessoSalvar($msg = "Objeto salvo com sucesso.", $dados){
+  public static function sucessoSalvar($dados, $msg = "Objeto salvo com sucesso."){
         return response()->json([
             'status' => 'sucesso',
             'code' => 'sc03',
@@ -108,7 +108,7 @@ class ResponseHelper
         ],200);
     }
 
-  public static function sucessoObter($msg = "Dados obtidos com sucesso", $dados, $codigo = 'sc09'){
+  public static function sucessoObter($dados, $codigo = 'sc09', $msg = "Dados obtidos com sucesso"){
         return response()->json([
             'status' => 'sucesso',
             'code' => 'sc09',
