@@ -17,7 +17,7 @@ class ResponseHelper
       ],500);
   }
 
-  public static function exception($msg = "Exception lançada", $exception){
+  public static function exception($exception,$msg = "Exception lançada"){
         return response()->json([
             'status' => 'erro',
             'codigo' => 'ex01',
