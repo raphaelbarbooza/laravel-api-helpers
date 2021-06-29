@@ -17,7 +17,7 @@ class ResponseHelper
       ],500);
   }
 
-  public static function exception($msg = "Exception lançada", $exception){
+  public static function exception($exception,$msg = "Exception lançada"){
         return response()->json([
             'status' => 'erro',
             'codigo' => 'ex01',
@@ -108,12 +108,13 @@ class ResponseHelper
         ],200);
     }
 
-  public static function sucessoObter($dados, $codigo = 'sc09', $msg = "Dados obtidos com sucesso"){
+  public static function sucessoObter($dados, $filtros = [], $codigo = 'sc09', $msg = "Dados obtidos com sucesso"){
         return response()->json([
             'status' => 'sucesso',
             'code' => 'sc09',
             'msg' => $msg,
-            'dados' => $dados
+            'dados' => $dados,
+            'filtros' => $filtros
         ],200);
     }
 
@@ -126,7 +127,7 @@ class ResponseHelper
       ],202);
   }
 
-  public static function laravelPaginate($paginate, $total_db){
+  public static function laravelPaginate($paginate, $total_db, $filtros = []){
         /** Retorna sucesso, porém deixa claro que é uma páginação **/
       //Construindo os dados a serem retornados
       $dados = [
@@ -141,7 +142,7 @@ class ResponseHelper
           'resultado' => $paginate->items()
       ];
       //Retornando
-      return self::sucessoObter("Paginação obtida com sucesso",$dados,"sc10");
+      return self::sucessoObter($dados,$filtros,"sc10","Paginação obtida com sucesso");
 
   }
 }
