@@ -141,7 +141,7 @@ class ResponseHelper
           'resultado' => $paginate->items()
       ];
       //Retornando
-      return self::sucessoObter("Paginação obtida com sucesso",$dados,"sc10");
+      return self::sucessoObter($dados,"sc10","Paginação obtida com sucesso");
 
   }
 }
