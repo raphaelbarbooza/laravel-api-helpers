@@ -36,4 +36,18 @@ class FormatHelper
         return $protocolo.'://'.$url;
     }
 
+    public static function removerChaveArrayAssociativa($chaves,$array){
+        foreach($array as $chave => $valor){
+            if(is_array($valor)){
+                $temp = self::removerChaveArrayAssociativa($chave,$valor);
+                $array[$chave] = $temp;
+            }else{
+                if(in_array($chave,$chaves)){
+                    unset($array[$chave]);
+                }
+            }
+        }
+        return $array;
+    }
+
 }
