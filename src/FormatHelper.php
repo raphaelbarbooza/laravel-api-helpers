@@ -36,17 +36,36 @@ class FormatHelper
         return $protocolo.'://'.$url;
     }
 
-    public static function removerChaveArrayAssociativa($chaves,$array){
-        foreach($array as $chave => $valor){
-            if(is_array($valor)){
-                $temp = self::removerChaveArrayAssociativa($chave,$valor);
-                $array[$chave] = $temp;
+    public static function tratarResponse($objeto,$remover_nulos = true,$remover_chaves = [], $busca_recursiva = false){
+        //Vai pegar o objeto, identifcar rasamente o que ele é, e tratar antes de retornar para o Response da API
+        if(is_array($objeto)){
+            //É uma array, vamos tratar como tal.
+            $array = $objeto;
+        }else{
+            //Provavelmente é um objeto. Vamos ver se podemos transformar em array
+            if(method_exists($objeto,'toArray')){
+                $array = $objeto->toArray();
             }else{
-                if(in_array($chave,$chaves)){
-                    unset($array[$chave]);
-                }
+                throw new \Exception("O objeto informado não pode ser tratado.");
             }
         }
+        //Agora vamos percorrer todo o vetor
+        foreach ($array as $indice => $valor){
+            //Caso o $valor for outra array, e a busca recursiva estiver ativa, vamos reaplicar o método nele.
+            if(is_array($valor) && $busca_recursiva){
+                $array[$indice] = self::tratarResponse($valor,$remover_nulos,$remover_chaves,$busca_recursiva);
+            }
+            //Caso o $valor for nulo e o remover nulos ativo, vamos apagar a chave
+            if(is_null($valor) && $remover_nulos){
+                unset($array[$indice]);
+            }
+            //Caso o indice pertencer a chaves que devem ser removidas, remover
+            if(in_array($indice,$remover_chaves)){
+                unset($array[$indice]);
+            }
+        }
+
+        //Retornar o objeto tratado
         return $array;
     }
 
