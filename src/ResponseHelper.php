@@ -111,7 +111,7 @@ class ResponseHelper
   public static function sucessoObter($dados, $filtros = [], $codigo = 'sc09', $msg = "Dados obtidos com sucesso"){
         return response()->json([
             'status' => 'sucesso',
-            'code' => 'sc09',
+            'code' => $codigo,
             'msg' => $msg,
             'dados' => $dados,
             'filtros' => $filtros
