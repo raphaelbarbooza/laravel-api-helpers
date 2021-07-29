@@ -57,10 +57,10 @@ class ResponseHelper
         ],500);
   }
 
-  public static function proibido($msg = "Você não ter permissão para efetuar essa ação."){
+  public static function proibido($msg = "Você não ter permissão para efetuar essa ação.",$code = 'pr01'){
         return response()->json([
             'status' => 'erro',
-            'code' => 'pr01',
+            'code' => $code,
             'msg' => $msg
         ],403);
   }
@@ -81,10 +81,10 @@ class ResponseHelper
         ],202);
     }
 
-  public static function sucessoAcao($msg = "Ação executada com sucesso.", $dados = null){
+  public static function sucessoAcao($msg = "Ação executada com sucesso.", $dados = null, $code = 'acao_executada'){
       return response()->json([
           'status' => 'sucesso',
-          'code' => 'acao_executada',
+          'code' => $code,
           'msg' => $msg,
           'dados' => $dados
       ],200);
@@ -118,10 +118,10 @@ class ResponseHelper
         ],200);
     }
 
-  public static function sucessoVazio($msg = "A requisição retornou um objeto vazio."){
+  public static function sucessoVazio($msg = "A requisição retornou um objeto vazio.", $code = 'sc00'){
       return response()->json([
           'status' => 'sucesso',
-          'code' => 'sc00',
+          'code' => $code,
           'msg' => $msg,
           'dados' => []
       ],202);
