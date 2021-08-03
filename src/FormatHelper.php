@@ -71,7 +71,7 @@ class FormatHelper
         return $array;
     }
 
-    public function mascarar($val, $mask)
+    public static function mascarar($val, $mask)
     {
         $maskared = '';
         $k = 0;
