@@ -28,10 +28,13 @@ class ResponseHelper
 
   public static function erroValidacao($errors, $originalBag = false, $codigo = "vl01"){
       /** Tratamento da BAG de Erros **/
-      //Nova bag
-      $bag = array();
+
+      //Bag original
+      $bag = $errors;
       //Vamos correr os erros
       if(!$originalBag){
+          //Nova bag
+          $bag = array();
           foreach($errors as $chaveA => $erroA){
               if(is_array($erroA)){
                   foreach ($erroA as $erroB){
