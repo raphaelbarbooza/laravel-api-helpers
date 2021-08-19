@@ -26,24 +26,26 @@ class ResponseHelper
         ],500);
     }
 
-  public static function erroValidacao($errors){
+  public static function erroValidacao($errors, $originalBag = false, $codigo = "vl01"){
       /** Tratamento da BAG de Erros **/
       //Nova bag
       $bag = array();
       //Vamos correr os erros
-      foreach($errors as $chaveA => $erroA){
-          if(is_array($erroA)){
-              foreach ($erroA as $erroB){
-                  $bag[] = $chaveA."|".$erroB;
+      if(!$originalBag){
+          foreach($errors as $chaveA => $erroA){
+              if(is_array($erroA)){
+                  foreach ($erroA as $erroB){
+                      $bag[] = $chaveA."|".$erroB;
+                  }
+              }else{
+                  $bag[] = $chaveA."|".$erroA;
               }
-          }else{
-              $bag[] = $chaveA."|".$erroA;
           }
       }
       /** Retorno de dados **/
         return response()->json([
             'status' => 'erro',
-            'codigo' => 'vl01',
+            'codigo' => $codigo,
             'msg' => 'Erro na validação dos dados',
             'bag' => $bag
         ],406);
